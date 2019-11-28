@@ -6,28 +6,97 @@
     android:layout_height="match_parent"
     tools:context=".neighbour_page.NeighbourPage">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="273dp"
         android:orientation="vertical"
-        android:padding="20dp">
-
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/imageAvatar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageAvatar"/>
+            android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/textName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textName"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:paddingTop="-30dp"/>
+            android:layout_marginTop="300dp"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:background="@android:color/white">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:padding="20dp"
+                android:rowCount="3">
+
+                <ImageView
+                    android:id="@+id/imagePhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:src="@drawable/baseline_call_black_18" />
+
+                <TextView
+                    android:id="@+id/textPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:text="+33612345678" />
+
+                <ImageView
+                    android:id="@+id/imageMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:src="@drawable/baseline_email_black_18" />
+
+                <TextView
+                    android:id="@+id/textMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:text="loremIpsum@OpenClassrooms.com" />
+
+                <ImageView
+                    android:id="@+id/imageWebSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:src="@drawable/round_language_black_18" />
+
+                <TextView
+                    android:id="@+id/textWebSite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:text="openclassrooms.com" />
 
 
+            </GridLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>
