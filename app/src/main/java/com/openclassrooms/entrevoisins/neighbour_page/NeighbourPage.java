@@ -17,7 +17,7 @@ import java.util.List;
 
 public class NeighbourPage extends AppCompatActivity {
 
-    TextView textName;
+    TextView textName, gridNom;
     ImageView imageAvatar;
 
     List<Neighbour> listNeighbour;
@@ -41,6 +41,9 @@ public class NeighbourPage extends AppCompatActivity {
        textName.setText(neighbour.getName());
        imageAvatar = findViewById(R.id.imageAvatar);
        Glide.with(NeighbourPage.this).load(neighbour.getAvatarUrl()).into(imageAvatar);
+
+       gridNom = findViewById(R.id.gridNom);
+       gridNom.setText(neighbour.getName());
 
 
     }
