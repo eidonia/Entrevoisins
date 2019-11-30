@@ -2,8 +2,11 @@ package com.openclassrooms.entrevoisins.neighbour_page;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +22,8 @@ public class NeighbourPage extends AppCompatActivity {
 
     TextView textName, gridNom;
     ImageView imageAvatar;
+    FloatingActionButton buttFav;
+    Button buttoRetour;
 
     List<Neighbour> listNeighbour;
     NeighbourApiService apiNeighbour;
@@ -44,6 +49,36 @@ public class NeighbourPage extends AppCompatActivity {
 
        gridNom = findViewById(R.id.gridNom);
        gridNom.setText(neighbour.getName());
+
+       buttFav = findViewById(R.id.buttFav);
+
+       if (!neighbour.getIsFavorite()){
+           buttFav.setImageResource(R.drawable.ic_star_border_white_24dp);
+       }else {
+           buttFav.setImageResource(R.drawable.ic_star_white_24dp);
+       }
+
+       buttFav.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (!neighbour.getIsFavorite()){
+                   buttFav.setImageResource(R.drawable.ic_star_white_24dp);
+                   neighbour.setIsFavorite(true);
+               }else {
+                   buttFav.setImageResource(R.drawable.ic_star_border_white_24dp);
+                   neighbour.setIsFavorite(false);
+               }
+
+           }
+       });
+
+       buttoRetour = findViewById(R.id.buttonRetour);
+       buttoRetour.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               NeighbourPage.this.finish();
+           }
+       });
 
 
     }
