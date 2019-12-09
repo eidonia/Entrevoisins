@@ -16,7 +16,7 @@ public class Neighbour {
     /** Avatar */
     private String avatarUrl;
 
-    private boolean isFavorite = false;
+    private boolean favorite = false;
 
     /**
      * Constructor
@@ -54,9 +54,9 @@ public class Neighbour {
         this.avatarUrl = avatarUrl;
     }
 
-    public boolean getIsFavorite(){ return isFavorite;}
+    public boolean isFavorite(){ return favorite;}
 
-    public void setIsFavorite(boolean isFavorite){ this.isFavorite = isFavorite;}
+    public void setFavorite(boolean isFavorite){ this.favorite = isFavorite;}
 
     @Override
     public boolean equals(Object o) {
