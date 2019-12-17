@@ -53,6 +53,11 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
+
+    //TODO deleteFav
+
+    //TODO deleteFav if DeleteNeigh et que si supp fav pas supp Dummy
+
     @Test
     public void checkNeighbourFavorites(){
         List<Neighbour> favNeigh = service.getNeighboursFavorite();

@@ -52,6 +52,7 @@ public class NeighbourPage extends AppCompatActivity {
 
     List<Neighbour> listNeighbour;
     NeighbourApiService apiNeighbour;
+    Neighbour neighbour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class NeighbourPage extends AppCompatActivity {
         });
 
 
-        Neighbour neighbour = listNeighbour.get(itemPosition);
+        neighbour = listNeighbour.get(itemPosition);
 
         collapseTool.setTitle(neighbour.getName());
         collapseTool.setContentScrimColor(getResources().getColor(android.R.color.transparent));

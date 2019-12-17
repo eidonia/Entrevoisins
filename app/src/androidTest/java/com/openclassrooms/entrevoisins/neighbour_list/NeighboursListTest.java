@@ -7,6 +7,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
@@ -68,4 +69,6 @@ public class NeighboursListTest {
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
+
+    //TODO tests sur les fav (suppression, add)
 }
