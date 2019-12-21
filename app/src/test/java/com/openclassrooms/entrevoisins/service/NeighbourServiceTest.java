@@ -27,23 +27,25 @@ public class NeighbourServiceTest {
     public void setup() {
         service = DI.getNewInstanceApiService();
 
-        Neighbour neigh = new Neighbour(1, "Bastien", "loremipsum.com");
-        Neighbour neigh2 = new Neighbour(2, "Julie", "loremipsum.com");
-        Neighbour neigh3 = new Neighbour(3, "Anthony", "loremipsum.com");
+        Neighbour neigh = new Neighbour(54, "Bastien", "loremipsum.com");
+        Neighbour neigh2 = new Neighbour(55, "Julie", "loremipsum.com");
+        Neighbour neigh3 = new Neighbour(56, "Anthony", "loremipsum.com");
 
         neigh.setFavorite(true);
         neigh2.setFavorite(false);
         neigh3.setFavorite(true);
         service.getNeighboursFavorite().add(neigh);
-        service.getNeighboursFavorite().add(neigh2);
         service.getNeighboursFavorite().add(neigh3);
+        service.getNeighbours().add(neigh);
+        service.getNeighbours().add(neigh2);
+        service.getNeighbours().add(neigh3);
     }
 
     @Test
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
         List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
-        assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
+        assertFalse(neighbours.contains(expectedNeighbours));
     }
 
     @Test
@@ -53,10 +55,41 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
+    @Test
+    public void deleteNeighbourFavWithSuccess() {
+        Neighbour neighbour = service.getNeighboursFavorite().get(0);
+        service.deleteNeighbourFav(neighbour);
+        assertFalse(service.getNeighboursFavorite().contains(neighbour));
 
-    //TODO deleteFav
 
-    //TODO deleteFav if DeleteNeigh et que si supp fav pas supp Dummy
+    }
+
+    @Test
+    public void FavoriteNeighbourDelIfNeighDel(){
+        Neighbour neighbour = service.getNeighbours().get(0);
+        neighbour.setFavorite(true);
+        List<Neighbour> favNeigh = service.getNeighboursFavorite();
+        favNeigh.add(neighbour);
+        assertTrue(service.getNeighboursFavorite().contains(neighbour));
+        service.deleteNeighbour(neighbour);
+        assertFalse(service.getNeighbours().contains(neighbour));
+        assertFalse(service.getNeighboursFavorite().contains(neighbour));
+
+
+    }
+
+
+    @Test
+    public void DeleteFavButNotNeigh(){
+        Neighbour neighbour = service.getNeighbours().get(0);
+        neighbour.setFavorite(true);
+        List<Neighbour> favNeigh = service.getNeighboursFavorite();
+        favNeigh.add(neighbour);
+        assertTrue(service.getNeighboursFavorite().contains(neighbour));
+        favNeigh.remove(neighbour);
+        assertFalse(favNeigh.contains(neighbour));
+        assertTrue(service.getNeighbours().contains(neighbour));
+    }
 
     @Test
     public void checkNeighbourFavorites(){
