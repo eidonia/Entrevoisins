@@ -79,7 +79,7 @@ public class NeighbourPage extends AppCompatActivity {
         neighbour = listNeighbour.get(itemPosition);
 
         collapseTool.setTitle(neighbour.getName());
-        collapseTool.setContentScrimColor(getResources().getColor(android.R.color.transparent));
+        collapseTool.setContentScrimColor(getResources().getColor(R.color.colorPrimaryDark));
         textPhone.setText("+33 6 42 51 48 87");
         textMail.setText("5 rue Auguste Mounié Antony");
         textWebSite.setText("openclassrooms.com");
