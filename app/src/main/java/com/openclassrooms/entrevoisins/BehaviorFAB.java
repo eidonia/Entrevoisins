@@ -7,8 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.bumptech.glide.util.Util;
-
 public class BehaviorFAB extends CoordinatorLayout.Behavior<FloatingActionButton> {
     private int toolbarHeight;
 
@@ -24,7 +22,6 @@ public class BehaviorFAB extends CoordinatorLayout.Behavior<FloatingActionButton
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, FloatingActionButton fab, View dependency) {
-        //do nothing with the fab or write your logic for the FAB
         return true;
     }
 }

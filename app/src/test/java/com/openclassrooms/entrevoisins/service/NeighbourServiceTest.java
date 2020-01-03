@@ -27,25 +27,13 @@ public class NeighbourServiceTest {
     public void setup() {
         service = DI.getNewInstanceApiService();
 
-        Neighbour neigh = new Neighbour(54, "Bastien", "loremipsum.com");
-        Neighbour neigh2 = new Neighbour(55, "Julie", "loremipsum.com");
-        Neighbour neigh3 = new Neighbour(56, "Anthony", "loremipsum.com");
-
-        neigh.setFavorite(true);
-        neigh2.setFavorite(false);
-        neigh3.setFavorite(true);
-        service.getNeighboursFavorite().add(neigh);
-        service.getNeighboursFavorite().add(neigh3);
-        service.getNeighbours().add(neigh);
-        service.getNeighbours().add(neigh2);
-        service.getNeighbours().add(neigh3);
     }
 
     @Test
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
         List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
-        assertFalse(neighbours.contains(expectedNeighbours));
+        assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
     @Test
@@ -57,6 +45,7 @@ public class NeighbourServiceTest {
 
     @Test
     public void deleteNeighbourFavWithSuccess() {
+        neighbourFavCreate();
         Neighbour neighbour = service.getNeighboursFavorite().get(0);
         service.deleteNeighbourFav(neighbour);
         assertFalse(service.getNeighboursFavorite().contains(neighbour));
@@ -65,7 +54,8 @@ public class NeighbourServiceTest {
     }
 
     @Test
-    public void FavoriteNeighbourDelIfNeighDel(){
+    public void FavoriteNeighbour_Delete_If_Neighbour_Delete(){
+        neighbourFavCreate();
         Neighbour neighbour = service.getNeighbours().get(0);
         neighbour.setFavorite(true);
         List<Neighbour> favNeigh = service.getNeighboursFavorite();
@@ -80,7 +70,8 @@ public class NeighbourServiceTest {
 
 
     @Test
-    public void DeleteFavButNotNeigh(){
+    public void Delete_FavoriteNeighbour_But_Not_Neighbour(){
+        neighbourFavCreate();
         Neighbour neighbour = service.getNeighbours().get(0);
         neighbour.setFavorite(true);
         List<Neighbour> favNeigh = service.getNeighboursFavorite();
@@ -92,9 +83,25 @@ public class NeighbourServiceTest {
     }
 
     @Test
-    public void checkNeighbourFavorites(){
+    public void ifFavorite_True_NeighbourAddToFavoriteNeighbourList(){
+        neighbourFavCreate();
         List<Neighbour> favNeigh = service.getNeighboursFavorite();
         assertTrue(favNeigh.size()>0);
+    }
+
+    private void neighbourFavCreate(){
+        Neighbour neigh = new Neighbour(54, "Bastien", "loremipsum.com");
+        Neighbour neigh2 = new Neighbour(55, "Julie", "loremipsum.com");
+        Neighbour neigh3 = new Neighbour(56, "Anthony", "loremipsum.com");
+
+        neigh.setFavorite(true);
+        neigh2.setFavorite(false);
+        neigh3.setFavorite(true);
+        service.getNeighboursFavorite().add(neigh);
+        service.getNeighboursFavorite().add(neigh3);
+        service.getNeighbours().add(neigh);
+        service.getNeighbours().add(neigh2);
+        service.getNeighbours().add(neigh3);
     }
 
 
