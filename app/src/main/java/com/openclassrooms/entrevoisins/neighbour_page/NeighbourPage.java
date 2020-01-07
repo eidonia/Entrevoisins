@@ -87,6 +87,7 @@ public class NeighbourPage extends AppCompatActivity {
 
         checkIsFavorite(neighbour);
 
+
         buttFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
