@@ -8,9 +8,6 @@ import static org.junit.Assert.*;
 
 public class NeighbourPageTest {
 
-    @Test
-    public void onCreate() {
-    }
 
     @Test
     public void checkIsFavorite() {
